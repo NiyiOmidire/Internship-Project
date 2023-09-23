@@ -16,6 +16,6 @@
 #    When Click search Amazon field
 #    When Search for lamp
 #    When Click on the first product
-#    When Click on Add to Cart button
+#    #When Click on Add to Cart button
 #    When Open cart page
 #    Then Verify cart has 1 item

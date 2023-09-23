@@ -27,3 +27,18 @@ Feature: Tests for amazon search
     |tea              |"tea"            |
     |coffee           |"coffee"         |
     |forks            |"forks"          |
+
+  Scenario: User can add a product to the cart
+    Given Open Amazon page
+    When Search for Tritan Farm to Table Pitcher on amazon
+    When Click on the first product
+    When Store product name
+    When Click on Add to cart button
+    When Open cart page
+    Then Verify cart has 1 item(s)
+    Then Verify cart has correct product
+
+  Scenario: Verify that user can see product names and images
+    Given Open Amazon page
+    When Search for coffee
+    Then Verify that every product has a name and an image
