@@ -1,6 +1,6 @@
-from selenium.webdriver.common.by import By
-from behave import given, when, then
-from time import sleep
+# from selenium.webdriver.common.by import By
+# from behave import given, when, then
+# from time import sleep
 
 #
 # the given precondition already exist in amazon_search_steps

@@ -1,6 +1,6 @@
 Feature: Signin tests
 
-  Scenario: Verify that clicking Orders takes to signin
+  Scenario: Verify that clicking Orders takes user to signin
     Given Open Amazon page
     When Click Orders
     Then Verify sign in page opened
