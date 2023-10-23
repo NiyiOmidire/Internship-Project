@@ -1,6 +1,7 @@
-# Created by commuter60 at 10/22/2023
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Test for Sign in
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario: Verify user can sign in
+    Given Open Signin page
+    When Signin
+    Then Verify sign in page successful
+

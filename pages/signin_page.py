@@ -1,13 +1,23 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
+from time import sleep
 
 
 class SignInPage(Page):
-    SIGNIN_HEADER = (By.XPATH, "//h1[@class='a-spacing-small']")
-    EMAIL_INPUT = (By.ID, 'ap_email')
+    MAIN_PAGE_TITLE = (By.XPATH, "//div[@class='page-title']")
+    EMAIL_INPUT = (By.ID, 'email-2')
+    PASSWORD_INPUT = (By.ID, 'field')
+    CONTINUE_BTN = (By.XPATH, "//a[@class='login-button w-button']")
 
-    def verify_signin_opened(self):
-        actual_text = self.driver.find_element(*self.SIGNIN_HEADER).text
-        assert actual_text == 'Sign in', f'Expected Sign in but got {actual_text}'
-        # Verify email field present
-        self.driver.find_element(*self.EMAIL_INPUT)
+    def open_signin_page(self):
+        self.open_url('sign-in')
+
+    def signin(self):
+        self.input_text('mcneyo101@gmail.com', *self.EMAIL_INPUT)
+        self.input_text('Omi*4*dire', *self.PASSWORD_INPUT)
+        self.wait_for_element_clickable_click(*self.CONTINUE_BTN)
+
+        # Verify page title and and url after successful signin
+    def verify_signin_success(self):
+        self.driver.find_element(*self.MAIN_PAGE_TITLE)
+        self.verify_partial_url('.reelly.io/')
