@@ -14,7 +14,7 @@ class Page:
         url = f'https://soft.reelly.io/{end_url}'
         self.driver.get(url)
         # logger.info(f'Opening URL {url}')
-        sleep(5)
+        sleep(2)
         self.driver.refresh()
 
     def click(self, *locator):
