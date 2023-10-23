@@ -14,9 +14,6 @@ def click_user_guide(context):
     context.app.settings_page.click_on_user_guide()
 
 
-@then('Verify the right page opens as {expected_result}')
-def verify_right_page_opens(context, expected_result):
-    context.app.user_guide_page.verify_user_guide_page_opens(expected_result)
 @then('Verify the right page opens')
 def verify_right_page_opens(context):
     context.app.user_guide_page.verify_user_guide_page_opens()
