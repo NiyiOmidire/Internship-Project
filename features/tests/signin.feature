@@ -1,11 +1,6 @@
-Feature: Signin tests
+# Created by commuter60 at 10/22/2023
+Feature: # Enter feature name here
+  # Enter feature description here
 
-  Scenario: Verify that clicking Orders takes user to signin
-    Given Open Amazon page
-    When Click Orders
-    Then Verify sign in page opened
-
-  Scenario: Sign In page can be opened from SignIn popup
-    Given Open Amazon page
-    When Click on button from SignIn popup
-    Then Verify sign in page opened
+  Scenario: # Enter scenario name here
+    # Enter steps here
