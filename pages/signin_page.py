@@ -14,7 +14,7 @@ class SignInPage(Page):
 
     def signin(self):
         self.input_text('mcneyo101@gmail.com', *self.EMAIL_INPUT)
-        self.input_text('Bula!*laj!*', *self.PASSWORD_INPUT)
+        self.input_text('Ari53gdf7!*h', *self.PASSWORD_INPUT)
         self.wait_for_element_clickable_click(*self.CONTINUE_BTN)
 
         # Verify page title and and url after successful signin

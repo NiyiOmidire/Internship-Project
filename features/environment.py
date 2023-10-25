@@ -4,17 +4,21 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from app.application import Application
+from support.logger import logger
 
+# Enter these in the terminal to generate allure report
+# behave -f allure_behave.formatter:AllureFormatter -o test_results/ features/tests/settings.feature
+# allure serve test_results/
 
-# def browser_init(context):
+def browser_init(context):
 
-def browser_init(context, scenario_name):  # add scenario_name if you want to use it in Browserstack
+# def browser_init(context, scenario_name):  # add scenario_name if you want to use it in Browserstack
     """
     :param context: Behave context
     """
     # Google Chrome
-    # service = Service(executable_path=r'C:\Users\commuter60\Desktop\Internship_Projects\chromedriver.exe')
-    # context.driver = webdriver.Chrome(service=service)
+    service = Service(executable_path=r'C:\Users\commuter60\Desktop\Internship_Projects\chromedriver.exe')
+    context.driver = webdriver.Chrome(service=service)
 
     # Other Browsers: Firefox
     # service = Service(executable_path=r'C:\Users\commuter60\Desktop\Internship_Projects\geckodriver.exe')
@@ -34,20 +38,20 @@ def browser_init(context, scenario_name):  # add scenario_name if you want to us
 
     ### BROWSERSTACK ###
     ## Register for BrowserStack, then grab it from https://www.browserstack.com/accounts/settings
-    bs_user = 'niyiomidire_SwJOJOb'
-    bs_key = 'amypassswhat?5NcpYGhQsatp'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-
-    options = Options()
-    bstack_options = {
-        'os': 'OS X',
-        'osVersion': 'Sonoma',
-        "debug": "true",
-        'browserName': 'Chrome',
-        'sessionName': scenario_name
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    # bs_user = 'niyiomidire_SwJOJOb'
+    # bs_key = 'amypassswhat?5NcpYGhQsatp'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    #     'os': 'OS X',
+    #     'osVersion': 'Sonoma',
+    #     "debug": "true",
+    #     'browserName': 'Chrome',
+    #     'sessionName': scenario_name
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
 
@@ -59,18 +63,21 @@ def browser_init(context, scenario_name):  # add scenario_name if you want to us
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    # browser_init(context)
+    logger.info(f'\nStarted scenario: {scenario.name}')
+    browser_init(context)
     # Pass scenario.name to init() for browserstack config:
-    browser_init(context, scenario.name)
+    # browser_init(context, scenario.name)
 
 
 def before_step(context, step):
     print('\nStarted step: ', step)
+    logger.info(f'Started step: {step}')
 
 
 def after_step(context, step):
     if step.status == 'failed':
         print('\nStep failed: ', step)
+        logger.error(f'Step failed: {step}')
 
 
 def after_scenario(context, feature):
